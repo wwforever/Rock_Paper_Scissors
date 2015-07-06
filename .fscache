@@ -1,5 +1,8 @@
-::res://::1435581695
+::res://::1436096144
 icon.png::ImageTexture::1435474428::
+main.scn::PackedScene::1436095968::
+::res://scripts::1436097401
+centerimage.gd::GDScript::1436097401::
 ::res://sounds::1435479568
 aikode.wav::Sample::1432974114::
 fever.wav::Sample::1432974114::
@@ -11,9 +14,9 @@ pu.wav::Sample::1432974114::
 rakki.wav::Sample::1432974114::
 syo.wav::Sample::1432974114::
 zuko.wav::Sample::1432974114::
-::res://textures::1435479560
+::res://textures::1435841621
 aiko.png::ImageTexture::1432974114::
-base.png::ImageTexture::1432974114::
+base.png::ImageTexture::1435841621::
 close.png::ImageTexture::1432974114::
 font.png::ImageTexture::1432974114::
 guu.png::ImageTexture::1432974114::
