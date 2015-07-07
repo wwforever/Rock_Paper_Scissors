@@ -1,8 +1,9 @@
-::res://::1436096144
+::res://::1436273662
 icon.png::ImageTexture::1435474428::
-main.scn::PackedScene::1436095968::
-::res://scripts::1436097401
-centerimage.gd::GDScript::1436097401::
+main.gd::GDScript::1436273658::
+main.scn::PackedScene::1436273658::
+::res://scripts::1436273662
+centerimage.gd::GDScript::1436273658::
 ::res://sounds::1435479568
 aikode.wav::Sample::1432974114::
 fever.wav::Sample::1432974114::

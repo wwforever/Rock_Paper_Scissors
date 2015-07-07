@@ -9,11 +9,13 @@ var showIndex = 0
 var showTime = 0.05
 var lastTime = 0.0
 
+var is_run = true
+
 func _ready():
 	# Initialization here
 	images = [0,0,0]
-	images[0] = get_node("Scissors")
-	images[1] = get_node("Rock")
+	images[0] = get_node("Rock")
+	images[1] = get_node("Scissors")
 	images[2] = get_node("Paper")
 	
 	for i in range(3):
@@ -23,6 +25,9 @@ func _ready():
 	set_process(true)
 	
 func _process(delta):
+	if is_run == false:
+		return
+		
 	lastTime += delta
 	if (lastTime >= showTime):
 		images[showIndex].hide()
@@ -33,3 +38,7 @@ func _process(delta):
 		showIndex = 0
 
 	images[showIndex].show()
+	
+func set_run(run):
+	is_run = run
+	return showIndex
