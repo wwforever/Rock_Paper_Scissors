@@ -17,6 +17,11 @@ func buttonPressed(index):
 	if (centerimage != null):
 		var iJudgement = judgment(index, centerimage.set_run(false))
 		dashboard.showDashBoard(iJudgement)
+		if (iJudgement == 1):
+			var tick = OS.get_ticks_msec()
+			seed(tick)
+			var resultCoin = randi() % 12
+			dashboard.setResultCoin(resultCoin)
 		
 func judgment(btnIndex, showIndex):
 	# rock
