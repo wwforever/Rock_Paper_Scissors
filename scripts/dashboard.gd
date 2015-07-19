@@ -19,18 +19,11 @@ func _ready():
 	
 	numbers = [0,0,0,0,0,0,0,0,0,0,0,0]
 	
-	numbers[0] = get_node("Numbers/0");
-	numbers[1] = get_node("Numbers/1");
-	numbers[2] = get_node("Numbers/2");
-	numbers[3] = get_node("Numbers/3");
-	numbers[4] = get_node("Numbers/4");
-	numbers[5] = get_node("Numbers/5");
-	numbers[6] = get_node("Numbers/6");
-	numbers[7] = get_node("Numbers/7");
-	numbers[8] = get_node("Numbers/8");
-	numbers[9] = get_node("Numbers/9");
-	numbers[10] = get_node("Numbers/10");
-	numbers[11] = get_node("Numbers/11");
+	var numbersNode = get_node("Numbers")
+	var numberCount = numbersNode.get_child_count()
+	
+	for i in range(numberCount):
+		numbers[i] = numbersNode.get_child(i)
 	
 func _process(delta):
 	lastTime += delta
