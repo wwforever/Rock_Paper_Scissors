@@ -7,11 +7,15 @@ extends Node
 
 var centerimage
 var dashboard
+var coin = 10
+var coinLabel
 
 func _ready():
 	# Initialization here
 	centerimage = get_node("BaseSprite/Center")
 	dashboard = get_node("BaseSprite/Dashboard")
+	coinLabel = get_node("BaseSprite/Node2D/Coin")
+	coinLabel.set_text(var2str(coin))
 
 func buttonPressed(index):
 	if (centerimage != null):

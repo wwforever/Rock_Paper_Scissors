@@ -1,10 +1,10 @@
-::res://::1437303634
+::res://::1437308437
 icon.png::ImageTexture::1435474428::
-main.gd::GDScript::1437303634::
-main.scn::PackedScene::1437303359::
-::res://scripts::1437303634
-centerimage.gd::GDScript::1437303634::
-dashboard.gd::GDScript::1437303634::
+main.gd::GDScript::1437308437::
+main.scn::PackedScene::1437307571::
+::res://scripts::1437308437
+centerimage.gd::GDScript::1437308437::
+dashboard.gd::GDScript::1437308437::
 ::res://sounds::1435479568
 aikode.wav::Sample::1432974114::
 fever.wav::Sample::1432974114::
