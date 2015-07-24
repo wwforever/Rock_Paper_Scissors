@@ -24,8 +24,8 @@ func buttonPressed(index):
 		if (iJudgement == 1):
 			var tick = OS.get_ticks_msec()
 			seed(tick)
-			var resultCoin = randi() % 12
-			dashboard.setResultCoin(resultCoin)
+			var resultCoinIndex = randi() % 12
+			dashboard.setResultCoin(resultCoinIndex)
 		
 func judgment(btnIndex, showIndex):
 	# rock

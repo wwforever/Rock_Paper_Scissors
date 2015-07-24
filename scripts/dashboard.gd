@@ -14,6 +14,7 @@ var showNumberIndex = 0
 var resultCoinIndex = -1
 var totalWinShotTime = 3
 var accumulatedWinShowTime = 0
+var main
 
 func _ready():
 	# Initialization here
@@ -27,6 +28,8 @@ func _ready():
 	
 	for i in range(numberCount):
 		numbers[i] = numbersNode.get_child(i)
+	
+	main = get_node("/root/Main")
 	
 func _process(delta):
 	accumulatedWinShowTime += delta
@@ -45,7 +48,7 @@ func _process(delta):
 		set_process(false)
 		accumulatedWinShowTime = 0
 		showNumberIndex = -1
-		resultCoinIndex = -1
+		setResultCoin(-1)
 	
 func showDashBoard(iJudgement):
 	# win
