@@ -6,10 +6,12 @@ extends Node2D
 # var b="textvar"
 var images = []
 var showIndex = 0
-var showTime = 0.05
+var titleShowTime = 1
+var gamePlayShowTime = 0.05
 var lastTime = 0.0
 
 var is_run = true
+var main
 
 func _ready():
 	# Initialization here
@@ -22,9 +24,17 @@ func _ready():
 		if i != showIndex:
 			images[i].hide()
 			
+	main = get_node("/root/Main")
+			
 	set_process(true)
 	
 func _process(delta):
+	if main.gameState == main.TITLE_STATE:
+		processCenterImage(delta, titleShowTime)
+	elif main.gameState == main.GAME_PLAY:
+		processCenterImage(delta, gamePlayShowTime)
+
+func processCenterImage(delta, showTime):
 	if is_run == false:
 		return
 		

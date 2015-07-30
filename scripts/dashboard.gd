@@ -12,7 +12,7 @@ var lastTime = 0
 var numbers = []
 var showNumberIndex = 0
 var resultCoinIndex = -1
-var totalWinShotTime = 3
+var totalWinShowtTime = 1.5
 var accumulatedWinShowTime = 0
 var main
 
@@ -44,7 +44,7 @@ func _process(delta):
 		
 	numbers[showNumberIndex].show()
 		
-	if accumulatedWinShowTime > totalWinShotTime and showNumberIndex == resultCoinIndex:
+	if accumulatedWinShowTime > totalWinShowtTime and showNumberIndex == resultCoinIndex:
 		set_process(false)
 		accumulatedWinShowTime = 0
 		showNumberIndex = -1
@@ -62,5 +62,4 @@ func showDashBoard(iJudgement):
 		draw.show()
 		
 func setResultCoin(iResultIndex):
-	print("Coin Index", iResultIndex)
 	resultCoinIndex = iResultIndex
