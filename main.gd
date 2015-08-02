@@ -15,6 +15,14 @@ const GAME_PLAY = 1
 const GAME_RESULT = 2
 const GAME_END = 3
 
+const ROCK = 0
+const SCISSORS = 1
+const PAPER = 2
+
+const LOSE = 0
+const WIN = 1
+const DRAW = 2
+
 var gameState
 
 func _ready():
@@ -24,54 +32,57 @@ func _ready():
 	coinLabel = get_node("BaseSprite/Node2D/Coin")
 	coinLabel.set_text(var2str(coin))
 	gameState = TITLE_STATE
+	var tick = OS.get_ticks_msec()
+	seed(tick)
 
 func buttonPressed(index):
 	if gameState != GAME_PLAY:
 		return
 
-	if (centerimage != null):
-		var iJudgement = judgment(index, centerimage.set_run(false))
-		dashboard.showDashBoard(iJudgement)
-		if (iJudgement == 1):
-			var tick = OS.get_ticks_msec()
-			seed(tick)
-			var resultCoinIndex = randi() % 12
-			dashboard.setResultCoin(resultCoinIndex)
+	if (centerimage == null):
+		return
+		
+	gameState = GAME_RESULT	
+	var iJudgement = judgment(index, centerimage.set_run(false))
+	dashboard.showDashBoard(iJudgement)
+	if (iJudgement == 1):
+		var resultCoinIndex = randi() % 12
+		dashboard.setResultCoin(resultCoinIndex)
 		
 func judgment(btnIndex, showIndex):
 	# rock
-	if btnIndex == 0:
+	if btnIndex == ROCK:
 		#draw
-		if showIndex == 0:
-			return 2
+		if showIndex == ROCK:
+			return DRAW
 		# win
-		elif showIndex == 1:
-			return 1
+		elif showIndex == SCISSORS:
+			return WIN
 		# lose
 		else:
-			return 0
+			return LOSE
 	# scissors
-	elif btnIndex == 1:
+	elif btnIndex == SCISSORS:
 		#draw
-		if showIndex == 1:
-			return 2
+		if showIndex == SCISSORS:
+			return DRAW
 		# win
-		elif showIndex == 2:
-			return 1
+		elif showIndex == PAPER:
+			return WIN
 		# lose
 		else:
-			return 0
+			return LOSE
 	# papers
 	else:
 		#draw
-		if showIndex == 2:
-			return 2
+		if showIndex == PAPER:
+			return DRAW
 		# win
-		elif showIndex == 0:
-			return 1
+		elif showIndex == ROCK:
+			return WIN
 		# lose
 		else:
-			return 0
+			return LOSE
 
 func _on_btnRock_pressed():
 	buttonPressed(0)
