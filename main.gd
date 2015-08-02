@@ -24,6 +24,7 @@ const WIN = 1
 const DRAW = 2
 
 var gameState
+var gameResult
 
 func _ready():
 	# Initialization here
@@ -43,11 +44,8 @@ func buttonPressed(index):
 		return
 		
 	gameState = GAME_RESULT	
-	var iJudgement = judgment(index, centerimage.set_run(false))
-	dashboard.showDashBoard(iJudgement)
-	if (iJudgement == 1):
-		var resultCoinIndex = randi() % 12
-		dashboard.setResultCoin(resultCoinIndex)
+	gameResult = judgment(index, centerimage.set_run(false))
+	dashboard.run(gameResult)
 		
 func judgment(btnIndex, showIndex):
 	# rock

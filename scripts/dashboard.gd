@@ -7,13 +7,16 @@ extends Node2D
 
 var lose
 var draw
-var numberShowTime = 0.05
+const numberShowTime = 0.05
 var lastTime = 0
 var numbers = []
 var showNumberIndex = 0
 var resultCoinIndex = -1
-var totalWinShowtTime = 1.5
-var accumulatedWinShowTime = 0
+const totalWinShowtTime = 1.5
+var accumulatedResultTime = 0
+
+const Lose_Draw_ShowTime = 1.0
+
 var main
 
 func _ready():
@@ -32,8 +35,17 @@ func _ready():
 	main = get_node("/root/Main")
 	
 func _process(delta):
-	accumulatedWinShowTime += delta
+	accumulatedResultTime += delta
 	lastTime += delta
+	
+	if main.gameResult == main.WIN and resultCoinIndex != -1:
+		processWin(delta)
+	elif main.gameResult == main.DRAW:
+		processDraw(delta)
+	else:
+		processLose(delta)
+
+func processWin(delta):
 	if lastTime >= numberShowTime:
 		numbers[showNumberIndex].hide()
 		showNumberIndex += 1
@@ -44,22 +56,31 @@ func _process(delta):
 		
 	numbers[showNumberIndex].show()
 		
-	if accumulatedWinShowTime > totalWinShowtTime and showNumberIndex == resultCoinIndex:
+	if accumulatedResultTime > totalWinShowtTime and showNumberIndex == resultCoinIndex:
 		set_process(false)
-		accumulatedWinShowTime = 0
+		accumulatedResultTime = 0
 		showNumberIndex = -1
-		setResultCoin(-1)
+		resultCoinIndex = -1
+
+func processLose(delta):
+	if lastTime >= Lose_Draw_ShowTime:
+		lose.hide()
+		main.gameState = main.GAME_PLAY
 	
-func showDashBoard(iJudgement):
-	# win
-	if iJudgement == 1:
-		set_process(true);
-	# lose
-	elif iJudgement == 0:
+func processDraw(delta):
+	if lastTime >= Lose_Draw_ShowTime:
+		draw.hide()
+		main.gameState = main.GAME_PLAY
+	
+func run(judgement):
+	resultCoinIndex = -1
+	if judgement == main.WIN:
+		resultCoinIndex = randi() % 12
+	elif judgement == main.LOSE:
 		lose.show()
-	# draw
 	else:
 		draw.show()
-		
-func setResultCoin(iResultIndex):
-	resultCoinIndex = iResultIndex
+
+	accumulatedResultTime = 0
+	lastTime = 0
+	set_process(true);
