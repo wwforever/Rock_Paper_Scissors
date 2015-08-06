@@ -18,6 +18,7 @@ var accumulatedResultTime = 0
 const Lose_Draw_ShowTime = 1.0
 
 var main
+var centerimage
 
 func _ready():
 	# Initialization here
@@ -33,6 +34,7 @@ func _ready():
 		numbers[i] = numbersNode.get_child(i)
 	
 	main = get_node("/root/Main")
+	centerimage = get_node("/root/Main/BaseSprite/Center")
 	
 func _process(delta):
 	accumulatedResultTime += delta
@@ -61,16 +63,22 @@ func processWin(delta):
 		accumulatedResultTime = 0
 		showNumberIndex = -1
 		resultCoinIndex = -1
+		main.gameState = main.TITLE_STATE
+		centerimage.set_run(true)
 
 func processLose(delta):
 	if lastTime >= Lose_Draw_ShowTime:
 		lose.hide()
-		main.gameState = main.GAME_PLAY
+		main.gameState = main.TITLE_STATE
+		centerimage.set_run(true)
+		set_process(false)
 	
 func processDraw(delta):
 	if lastTime >= Lose_Draw_ShowTime:
 		draw.hide()
 		main.gameState = main.GAME_PLAY
+		centerimage.set_run(true)
+		set_process(false)
 	
 func run(judgement):
 	resultCoinIndex = -1

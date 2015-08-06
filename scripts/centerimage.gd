@@ -51,4 +51,7 @@ func processCenterImage(delta, showTime):
 	
 func set_run(run):
 	is_run = run
-	return showIndex
+	if is_run == false:
+		return showIndex
+	else:
+		return -1
