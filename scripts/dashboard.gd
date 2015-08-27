@@ -67,6 +67,9 @@ func processWin(delta):
 		main.CoinAddSub(true, coinResultValue[resultCoinIndex])
 		resultCoinIndex = -1
 		main.gameState = main.TITLE_STATE
+		main.sound.stop_all()
+		main.playSound("rakki")
+		main.playSound("output")
 
 func processLose(delta):
 	if lastTime >= Lose_Draw_ShowTime:
@@ -81,11 +84,13 @@ func processDraw(delta):
 		main.gameState = main.GAME_PLAY
 		centerimage.set_run(true)
 		set_process(false)
+		main.playSound("aikode")
 	
 func run(judgement):
 	resultCoinIndex = -1
 	if judgement == main.WIN:
 		resultCoinIndex = randi() % 12
+		main.playSound("pu")
 	elif judgement == main.LOSE:
 		lose.show()
 	else:

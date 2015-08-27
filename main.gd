@@ -25,11 +25,17 @@ const DRAW = 2
 var gameState
 var gameResult
 
+var sound
+var bContinueJudgment = false
+ 
+
 func _ready():
 	# Initialization here
 	centerimage = get_node("BaseSprite/Center")
 	dashboard = get_node("BaseSprite/Dashboard")
 	coinLabel = get_node("BaseSprite/Node2D/Coin")
+	sound = get_node("SamplePlayer")
+	
 	coinLabel.set_text(var2str(coin))
 	gameState = TITLE_STATE
 	var tick = OS.get_ticks_msec()
@@ -41,10 +47,20 @@ func buttonPressed(index):
 
 	if (centerimage == null):
 		return
+	
+	if bContinueJudgment == false:
+		playSound("pon")
+	else:
+		playSound("syo")
 		
 	gameState = GAME_RESULT	
 	gameResult = judgment(index, centerimage.set_run(false))
 	dashboard.run(gameResult)
+	bContinueJudgment = true
+	if gameResult == LOSE:
+		playSound("zuko")
+	elif gameResult == WIN:
+		playSound("fever")
 		
 func judgment(btnIndex, showIndex):
 	# rock
@@ -100,6 +116,9 @@ func _on_btnInsertCoin_pressed():
 	
 	CoinAddSub(false, 1)
 	gameState = GAME_PLAY
+	playSound("input")
+	playSound("jaiken")
+	bContinueJudgment = false
 
 func CoinAddSub(bAdd, iValue):
 	if bAdd == true:
@@ -108,3 +127,6 @@ func CoinAddSub(bAdd, iValue):
 		coin -= iValue
 		
 	coinLabel.set_text(var2str(coin))
+	
+func playSound(soundName):
+	sound.play(soundName)
