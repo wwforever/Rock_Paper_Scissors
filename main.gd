@@ -13,7 +13,6 @@ var coinLabel
 const TITLE_STATE = 0
 const GAME_PLAY = 1
 const GAME_RESULT = 2
-const GAME_END = 3
 
 const ROCK = 0
 const SCISSORS = 1
