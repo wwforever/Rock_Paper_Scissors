@@ -63,7 +63,6 @@ func processWin(delta):
 	if accumulatedResultTime > totalWinShowtTime and showNumberIndex == resultCoinIndex:
 		set_process(false)
 		accumulatedResultTime = 0
-		showNumberIndex = -1
 		centerimage.set_run(true)
 		main.CoinAddSub(true, coinResultValue[resultCoinIndex])
 		resultCoinIndex = -1
