@@ -99,7 +99,13 @@ func _on_btnInsertCoin_pressed():
 		print("no coin")
 		return
 	
-	coin = coin - 1
-	coinLabel.set_text(var2str(coin))
+	CoinAddSub(false, 1)
 	gameState = GAME_PLAY
-	
+
+func CoinAddSub(bAdd, iValue):
+	if bAdd == true:
+		coin += iValue
+	else:
+		coin -= iValue
+		
+	coinLabel.set_text(var2str(coin))

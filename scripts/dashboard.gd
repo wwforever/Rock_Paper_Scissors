@@ -10,6 +10,7 @@ var draw
 const numberShowTime = 0.05
 var lastTime = 0
 var numbers = []
+var coinResultValue = []
 var showNumberIndex = 0
 var resultCoinIndex = -1
 const totalWinShowtTime = 1.5
@@ -26,6 +27,7 @@ func _ready():
 	draw = get_node("Draw")
 	
 	numbers = [0,0,0,0,0,0,0,0,0,0,0,0]
+	coinResultValue = [ 4, 1, 2, 7, 4, 2, 20, 1, 2, 4, 7, 2 ]
 	
 	var numbersNode = get_node("Numbers")
 	var numberCount = numbersNode.get_child_count()
@@ -55,16 +57,17 @@ func processWin(delta):
 	
 	if showNumberIndex >= numbers.size():
 		showNumberIndex = 0
-		
+			
 	numbers[showNumberIndex].show()
 		
 	if accumulatedResultTime > totalWinShowtTime and showNumberIndex == resultCoinIndex:
 		set_process(false)
 		accumulatedResultTime = 0
 		showNumberIndex = -1
+		centerimage.set_run(true)
+		main.CoinAddSub(true, coinResultValue[resultCoinIndex])
 		resultCoinIndex = -1
 		main.gameState = main.TITLE_STATE
-		centerimage.set_run(true)
 
 func processLose(delta):
 	if lastTime >= Lose_Draw_ShowTime:
